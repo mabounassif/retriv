@@ -85,9 +85,20 @@ python>=3.8
 ```
 
 ## 💾 Installation
-```bash
-pip install retriv
-```
+
+- `pip install retriv[sparse]`: Install only the sparse retriever (BM25/TF-IDF)
+- `pip install retriv[dense]`: Install only the dense retriever (semantic search)
+- `pip install retriv[hybrid]`: Install both sparse and dense retrievers
+- `pip install retriv[all]`: Install everything
+
+## Available Features
+
+| Feature | sparse | dense | hybrid | all |
+|---------|--------|-------|--------|-----|
+| BM25 Search | ✅ | ❌ | ✅ | ✅ |
+| Semantic Search | ❌ | ✅ | ✅ | ✅ |
+| Hybrid Search | ❌ | ❌ | ✅ | ✅ |
+| Advanced Filtering | ❌ | ❌ | ✅ | ✅ |
 
 ## 💡 Minimal Working Example
 
