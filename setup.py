@@ -26,13 +26,6 @@ setuptools.setup(
         "ranx",
         "indxr",
         "oneliner_utils",
-        "torch",
-        "torchvision",
-        "torchaudio",
-        "transformers[torch]",
-        "faiss-cpu",
-        "autofaiss",
-        "multipipe",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -52,4 +45,10 @@ setuptools.setup(
         "neural information retrieval",
     ],
     python_requires=">=3.8",
+    extras_require={
+        "sparse": ["numpy", "numba", "tqdm", "orjson"],
+        "dense": ["torch", "transformers", "faiss-cpu"],
+        "hybrid": ["retriv[sparse]", "retriv[dense]"],
+        "all": ["retriv[sparse]", "retriv[dense]"],
+    },
 )
