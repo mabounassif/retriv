@@ -32,7 +32,7 @@ from .base_retriever import BaseRetriever
 
 try:
     from .experimental import AdvancedRetriever
-    from .sparse_retriever import SparseRetriever
+    from .sparse_retriever.sparse_retriever import SparseRetriever
 
     # Alias for backward compatibility
     SearchEngine = SparseRetriever
