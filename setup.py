@@ -16,6 +16,7 @@ setuptools.setup(
     install_requires=[
         "numpy",
         "tqdm",
+        "multipipe",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
