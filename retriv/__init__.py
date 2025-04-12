@@ -37,10 +37,7 @@ try:
     # Alias for backward compatibility
     SearchEngine = SparseRetriever
 except ImportError:
-    raise ImportError(
-        "Sparse retrieval is not installed. Please install it using `pip install retriv[sparse]`"
-    )
-
+    pass
 try:
     from .dense_retriever.ann_searcher import ANN_Searcher
     from .dense_retriever.dense_retriever import DenseRetriever
@@ -49,13 +46,9 @@ try:
     # Alias for backward compatibility
     SearchEngine = DenseRetriever
 except ImportError:
-    raise ImportError(
-        "Dense retrieval is not installed. Please install it using `pip install retriv[dense]`"
-    )
+    pass
 
 try:
     from .hybrid_retriever import HybridRetriever
 except ImportError:
-    raise ImportError(
-        "Hybrid retrieval is not installed. Please install it using `pip install retriv[hybrid]`"
-    )
+    pass
