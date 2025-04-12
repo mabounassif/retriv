@@ -27,31 +27,35 @@ def set_base_path(path: str):
     os.environ["RETRIV_BASE_PATH"] = path
 
 
-# Check which extras are installed
-installed_packages = {pkg.key for pkg in pkg_resources.working_set}
-has_sparse = (
-    "retriv[sparse]" in installed_packages or "retriv[all]" in installed_packages
-)
-has_dense = "retriv[dense]" in installed_packages or "retriv[all]" in installed_packages
-has_hybrid = (
-    "retriv[hybrid]" in installed_packages or "retriv[all]" in installed_packages
-)
-
 # Import base classes that are always available
 from .base_retriever import BaseRetriever
 
-# Conditionally import flavor-specific classes
-if has_sparse:
+try:
     from .experimental import AdvancedRetriever
     from .sparse_retriever import SparseRetriever
 
     # Alias for backward compatibility
     SearchEngine = SparseRetriever
+except ImportError:
+    raise ImportError(
+        "Sparse retrieval is not installed. Please install it using `pip install retriv[sparse]`"
+    )
 
-if has_dense:
+try:
     from .dense_retriever.ann_searcher import ANN_Searcher
     from .dense_retriever.dense_retriever import DenseRetriever
     from .dense_retriever.encoder import Encoder
 
-if has_hybrid:
+    # Alias for backward compatibility
+    SearchEngine = DenseRetriever
+except ImportError:
+    raise ImportError(
+        "Dense retrieval is not installed. Please install it using `pip install retriv[dense]`"
+    )
+
+try:
     from .hybrid_retriever import HybridRetriever
+except ImportError:
+    raise ImportError(
+        "Hybrid retrieval is not installed. Please install it using `pip install retriv[hybrid]`"
+    )
